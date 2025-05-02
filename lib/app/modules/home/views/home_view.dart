@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
         ),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: CustomAnimatedListView(
         children: [
@@ -308,10 +308,10 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
-      endDrawer: CustomDrawer(
-        brand: Brands.toshiba,
-        onChanged: (value) => controller.selectedDevice.value = value,
-      ),
+      // endDrawer: CustomDrawer(
+      //   brand: Brands.toshiba,
+      //   onChanged: (value) => controller.selectedDevice.value = value,
+      // ),
       // bottomNavigationBar: const CallWidget(),
       floatingActionButton: CallWidget(
         onPhoneTap: () {
