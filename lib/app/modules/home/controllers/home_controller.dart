@@ -53,6 +53,11 @@ class HomeController extends GetxController {
     await launchUrl(launchUri);
   }
 
+  Future<void> goToWhats(String phoneNumber) async {
+    final Uri launchUri = Uri.parse('https://wa.me/+02$phoneNumber');
+    await launchUrl(launchUri);
+  }
+
   @override
   void onReady() {
     scale.value = 1.0;

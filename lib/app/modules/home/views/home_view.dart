@@ -312,7 +312,16 @@ class HomeView extends GetView<HomeController> {
         brand: Brands.toshiba,
         onChanged: (value) => controller.selectedDevice.value = value,
       ),
-      bottomNavigationBar: const CallWidget(),
+      // bottomNavigationBar: const CallWidget(),
+      floatingActionButton: CallWidget(
+        onPhoneTap: () {
+          controller.makePhoneCall(Constants.callCenter);
+        },
+        onWhatsTap: () {
+          controller.goToWhats(Constants.callCenter);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
       extendBody: true,
     );
   }
