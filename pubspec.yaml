@@ -79,9 +79,14 @@ flutter:
     - assets/images/png/locations.jpg
     - assets/images/png/serv-1.jpg
     - assets/images/png/serv-3.jpg
+    - assets/images/png/zanussi_logo.jpg
     - assets/images/png/serv-8.jpg
     - assets/images/png/serv-10.jpg
     - assets/images/png/serv-12.jpg
+    - assets/images/zanossi/slide3.jpg
+    - assets/images/zanossi/slide2.jpg
+    - assets/images/zanossi/slide1.jpg
+    - assets/images/zanossi/zanussi_botogas.jpg
     - assets/images/devices/auto.png
     - assets/images/devices/tv.jpg
     - assets/images/devices/deep.png

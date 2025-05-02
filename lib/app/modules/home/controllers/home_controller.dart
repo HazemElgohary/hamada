@@ -7,7 +7,7 @@ import '../../../helpers/enums.dart';
 class HomeController extends GetxController {
   final scale = 0.0.obs;
   final selectedDevice = Rx<Devices?>(null);
-  final selectedBrand = Rx<Brands>(Brands.toshiba);
+  final selectedBrand = Rx<Brands>(Brands.zanussi);
 
   final alexandriaAreas = <String>[
     'الشاطبي',
@@ -38,11 +38,6 @@ class HomeController extends GetxController {
     'جليم',
     'سان ستيفانو',
     'لوران',
-  ];
-  final images = <String>[
-    Asset.images.carousal.slide1,
-    Asset.images.carousal.slide2,
-    Asset.images.carousal.slide3,
   ];
 
   Future<void> makePhoneCall(String phoneNumber) async {

@@ -11,6 +11,8 @@ import 'package:hamada/app/config/widgets/default_button.dart';
 import 'package:hamada/app/config/widgets/device_item.dart';
 import 'package:hamada/app/config/widgets/home_widgets.dart';
 import 'package:hamada/app/helpers/enums.dart';
+import 'package:hamada/app/helpers/extentions/enum.dart';
+import 'package:hamada/app/modules/home/views/widgets/carousal.dart';
 import 'package:hamada/generated/assets.dart';
 
 import '../controllers/home_controller.dart';
@@ -25,36 +27,25 @@ class HomeView extends GetView<HomeController> {
         elevation: 10,
         backgroundColor: Colors.grey[200],
         title: Obx(
-          () => Text(
-            controller.selectedBrand.value.name.toUpperCase(),
-            style: context.textTheme.bodyLarge!.copyWith(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Colors.red,
-            ),
-          ),
+          () => controller.selectedBrand.value == Brands.zanussi
+              ? Image.asset(
+                  Asset.images.png.zanussiLogo,
+                  fit: BoxFit.fill,
+                )
+              : Text(
+                  controller.selectedBrand.value.name.toUpperCase(),
+                  style: context.textTheme.bodyLarge!.copyWith(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: controller.selectedBrand.value.getColor(),
+                  ),
+                ),
         ),
         centerTitle: true,
       ),
       body: CustomAnimatedListView(
         children: [
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 200.0,
-              autoPlay: true,
-            ),
-            items: controller.images.map(
-              (i) {
-                return SizedBox(
-                  width: double.infinity,
-                  child: Image.asset(
-                    i,
-                    fit: BoxFit.cover,
-                  ),
-                );
-              },
-            ).toList(),
-          ),
+          CustomCarousal(brand: controller.selectedBrand.value),
           const SizedBox(
             height: 20,
           ),
@@ -71,7 +62,7 @@ class HomeView extends GetView<HomeController> {
             height: 25,
           ),
           Text(
-            'اهلا بيكم في الموقع الرسمي لمركز صيانة توشيبا',
+            'اهلا بيكم في الموقع الرسمي لمركز صيانة ${controller.selectedBrand.value.name.tr}',
             textAlign: TextAlign.center,
             style: context.textTheme.bodyLarge!.copyWith(
               fontWeight: FontWeight.w700,
@@ -108,7 +99,7 @@ class HomeView extends GetView<HomeController> {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.red,
+                  color: controller.selectedBrand.value.getColor(),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -210,11 +201,18 @@ class HomeView extends GetView<HomeController> {
                 'صيانة جميع انواع الميكروويف ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
             image: Asset.images.devices.micro,
           ),
-          DeviceItem(
-            title: 'صيانة شاشات',
-            subTitle: 'صيانة جميع الشاشات ${controller.selectedBrand.value.name.tr} بكل انواعها',
-            image: Asset.images.devices.tv,
-          ),
+          if (controller.selectedBrand.value == Brands.zanussi)
+            DeviceItem(
+              title: 'صيانة بوتجازات',
+              subTitle: 'صيانة جميع بوتجازات ${controller.selectedBrand.value.name.tr} بكل انواعها',
+              image: Asset.images.zanossi.zanussiBotogas,
+            )
+          else
+            DeviceItem(
+              title: 'صيانة شاشات',
+              subTitle: 'صيانة جميع الشاشات ${controller.selectedBrand.value.name.tr} بكل انواعها',
+              image: Asset.images.devices.tv,
+            ),
           const TitleText(
             text: 'اهم مميزاتنا',
             addDivider: true,
@@ -280,7 +278,7 @@ class HomeView extends GetView<HomeController> {
                         horizontal: 20,
                       ),
                       child: DefaultButton(
-                        color: Colors.red,
+                        color: controller.selectedBrand.value.getColor(),
                         text: 'اتصل بنا',
                         onTap: () {
                           controller.makePhoneCall(Constants.callCenter);
@@ -308,11 +306,6 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
-      // endDrawer: CustomDrawer(
-      //   brand: Brands.toshiba,
-      //   onChanged: (value) => controller.selectedDevice.value = value,
-      // ),
-      // bottomNavigationBar: const CallWidget(),
       floatingActionButton: CallWidget(
         onPhoneTap: () {
           controller.makePhoneCall(Constants.callCenter);

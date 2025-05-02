@@ -20,11 +20,21 @@ String get serv1 => 'assets/images/png/serv-1.jpg' ;
 /// * jpg
 String get serv3 => 'assets/images/png/serv-3.jpg' ;
 /// * jpg
+String get zanussiLogo => 'assets/images/png/zanussi_logo.jpg' ;
+/// * jpg
 String get serv8 => 'assets/images/png/serv-8.jpg' ;
 /// * jpg
 String get serv10 => 'assets/images/png/serv-10.jpg' ;
 /// * jpg
-String get serv12 => 'assets/images/png/serv-12.jpg' ;}class _DevicesInterface{_DevicesInterface();
+String get serv12 => 'assets/images/png/serv-12.jpg' ;}class _ZanossiInterface{_ZanossiInterface();
+/// * jpg
+String get slide3 => 'assets/images/zanossi/slide3.jpg' ;
+/// * jpg
+String get slide2 => 'assets/images/zanossi/slide2.jpg' ;
+/// * jpg
+String get slide1 => 'assets/images/zanossi/slide1.jpg' ;
+/// * jpg
+String get zanussiBotogas => 'assets/images/zanossi/zanussi_botogas.jpg' ;}class _DevicesInterface{_DevicesInterface();
 /// * png
 String get auto => 'assets/images/devices/auto.png' ;
 /// * jpg
@@ -43,6 +53,8 @@ String get friage => 'assets/images/devices/friage.jpg' ;}class _ImagesInterface
 _CarousalInterface get carousal => _CarousalInterface() ;
 /// * Directory
 _PngInterface get png => _PngInterface() ;
+/// * Directory
+_ZanossiInterface get zanossi => _ZanossiInterface() ;
 /// * Directory
 _DevicesInterface get devices => _DevicesInterface() ;}class Asset{Asset();
 /// * Directory
