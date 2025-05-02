@@ -122,8 +122,13 @@ class SmallText extends StatelessWidget {
 
 class DefaultImage extends StatelessWidget {
   final String image;
+  final bool isLarge;
 
-  const DefaultImage({super.key, required this.image});
+  const DefaultImage({
+    super.key,
+    required this.image,
+    this.isLarge = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -131,20 +136,26 @@ class DefaultImage extends StatelessWidget {
       borderRadius: const BorderRadius.all(
         Radius.circular(20),
       ),
-      child: SizedBox(
-        height: 330,
-        width: double.infinity,
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-        ),
-      ),
+      child: isLarge
+          ? Image.asset(
+              image,
+              fit: BoxFit.cover,
+            )
+          : SizedBox(
+              height: 330,
+              width: double.infinity,
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
+            ),
     );
   }
 }
 
 class AlexAreas extends StatelessWidget {
   final List<String> areas;
+
   const AlexAreas({super.key, required this.areas});
 
   @override

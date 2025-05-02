@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:hamada/app/config/theme.dart';
 import 'package:hamada/app/config/widgets/call_widget.dart';
 import 'package:hamada/app/config/widgets/custom_drawer.dart';
 import 'package:hamada/app/config/widgets/default_button.dart';
+import 'package:hamada/app/config/widgets/device_item.dart';
 import 'package:hamada/app/config/widgets/home_widgets.dart';
 import 'package:hamada/app/helpers/enums.dart';
 import 'package:hamada/generated/assets.dart';
@@ -25,7 +27,7 @@ class HomeView extends GetView<HomeController> {
         title: Obx(
           () => Text(
             controller.selectedBrand.value.name.toUpperCase(),
-            style: const TextStyle(
+            style: context.textTheme.bodyLarge!.copyWith(
               fontSize: 40,
               fontWeight: FontWeight.bold,
               color: Colors.red,
@@ -36,10 +38,30 @@ class HomeView extends GetView<HomeController> {
       ),
       body: CustomAnimatedListView(
         children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 200.0,
+              autoPlay: true,
+            ),
+            items: controller.images.map(
+              (i) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: Image.asset(
+                    i,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              },
+            ).toList(),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Text(
-            'مركز خدمة صيانة ${controller.selectedBrand.value.name.tr} بالاسكندرية',
+            'مركز خدمة صيانة ${controller.selectedBrand.value.name.tr}',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: context.textTheme.bodyLarge!.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 40,
               color: Colors.black,
@@ -48,10 +70,10 @@ class HomeView extends GetView<HomeController> {
           const SizedBox(
             height: 25,
           ),
-          const Text(
-            'قطع غيار اصليه, ضمان عام على الصيانه, نصلك بنفس اليوم ثلاجات, ديب فريزر, وغسالات وشاشات و ميكروويف',
+          Text(
+            'اهلا بيكم في الموقع الرسمي لمركز صيانة توشيبا',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: context.textTheme.bodyLarge!.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: 20,
               color: Colors.black,
@@ -91,10 +113,10 @@ class HomeView extends GetView<HomeController> {
                 ),
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'من نحن',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: context.textTheme.bodyLarge!.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: 30,
                         color: Colors.white,
@@ -104,9 +126,9 @@ class HomeView extends GetView<HomeController> {
                       height: 20,
                     ),
                     Text(
-                      'أفضل مركز خدمة فى مصر لصيانة اجهزة ${controller.selectedBrand.value.name.tr}, صيانة فورية بالمنزل وضمان عام علي قطع الغيار الاصلية, يسعدنا استقبال اتصالاتكم من الساعة 8:00 صباحا حتى الساعة 10:00 مساء على الرقم ${Constants.callCenter} لصيانة جميع اجهزة ${controller.selectedBrand.value.name.tr} المنزلية (ثلاجات وبوتجازات وديب فريزر وغسالات وشاشات و ميكروويف )',
+                      'أفضل مركز خدمة فى مصر لصيانة اجهزة ${controller.selectedBrand.value.name.tr}, صيانة فورية بالمنزل , يسعدنا استقبال اتصالاتكم من الساعة 8:00 صباحا حتى الساعة 10:00 مساء على الرقم ${Constants.callCenter} لصيانة جميع اجهزة ${controller.selectedBrand.value.name.tr} المنزلية (غسالات وثلاجات وبوتجازات وديب فريزر وشاشات و ميكروويف ) بجميع اشكالها واحجامها ',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: context.textTheme.bodyLarge!.copyWith(
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
                         color: Colors.white,
@@ -115,24 +137,30 @@ class HomeView extends GetView<HomeController> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const DefaultButton(
+                    DefaultButton(
                       color: Colors.grey,
                       width: 300,
                       text: 'اتصل بنا',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.keyboard_arrow_left,
                         color: Colors.white,
                         size: 20,
                       ),
+                      onTap: () {
+                        controller.makePhoneCall(Constants.callCenterSecond);
+                      },
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    const DefaultButton(
+                    DefaultButton(
                       color: Colors.grey,
                       width: 300,
                       text: Constants.callCenter,
-                      icon: SizedBox.shrink(),
+                      icon: const SizedBox.shrink(),
+                      onTap: () {
+                        controller.makePhoneCall(Constants.callCenter);
+                      },
                     ),
                   ],
                 ),
@@ -141,6 +169,51 @@ class HomeView extends GetView<HomeController> {
           ),
           const SizedBox(
             height: 25,
+          ),
+          const TitleText(
+            text: 'الاجهزة',
+            addDivider: true,
+          ),
+          DeviceItem(
+            title: 'صيانة ثلاجة',
+            subTitle:
+                'صيانة جميع ثلاجات ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.friage,
+          ),
+          DeviceItem(
+            title: 'صيانة غسالات',
+            subTitle:
+                'صيانة جميع الغسالات ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.drier,
+          ),
+          DeviceItem(
+            title: 'صيانة ديب فريزر',
+            subTitle:
+                'صيانة جميع انواع الديب فريزر ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.deep,
+          ),
+          DeviceItem(
+            title: 'صيانة غسالات فوق اتوماتيك ',
+            subTitle:
+                'صيانة جميع الغسالات ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.auto,
+          ),
+          DeviceItem(
+            title: 'صيانة غسالات الاطباق',
+            subTitle:
+                ' صيانة جميع الغسالات الاطباق ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.tae,
+          ),
+          DeviceItem(
+            title: 'صيانة ميكروويف',
+            subTitle:
+                'صيانة جميع انواع الميكروويف ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
+            image: Asset.images.devices.micro,
+          ),
+          DeviceItem(
+            title: 'صيانة شاشات',
+            subTitle: 'صيانة جميع الشاشات ${controller.selectedBrand.value.name.tr} بكل انواعها',
+            image: Asset.images.devices.tv,
           ),
           const TitleText(
             text: 'اهم مميزاتنا',
@@ -161,12 +234,12 @@ class HomeView extends GetView<HomeController> {
             subTitle: 'نحن نستعمل في صيانتنا قطع الغيار الاصلية لجميع الاجهزة',
             image: Asset.images.png.serv8,
           ),
-          ServiceItem(
-            title: 'ضمان لمدة عام',
-            subTitle:
-                'لاننا نثق في خدمتنا وفي قطع الغيار التي نستخدمها نعطي لعميلنا ضمان لمدة عام على ما قمنا به',
-            image: Asset.images.png.serv1,
-          ),
+          // ServiceItem(
+          //   title: 'ضمان لمدة عام',
+          //   subTitle:
+          //       'لاننا نثق في خدمتنا وفي قطع الغيار التي نستخدمها نعطي لعميلنا ضمان لمدة عام على ما قمنا به',
+          //   image: Asset.images.png.serv1,
+          // ),
           ServiceItem(
             title: 'نغطي الاسكندرية',
             subTitle: 'لدينا اسطول من افضل المهندسين وامهر الفنيين يغطي محافظة الاسكندرية بالكامل',
@@ -193,7 +266,7 @@ class HomeView extends GetView<HomeController> {
                     Text(
                       'اتصل الان على رقم صيانة ${controller.selectedBrand.value.name.tr} العربي و ستجدنا امامك لاصلاح جهازك',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: context.textTheme.bodyLarge!.copyWith(
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.w600,
                         fontSize: 30,
@@ -202,14 +275,17 @@ class HomeView extends GetView<HomeController> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
                       child: DefaultButton(
                         color: Colors.red,
                         text: 'اتصل بنا',
-                        icon: SizedBox.shrink(),
+                        onTap: () {
+                          controller.makePhoneCall(Constants.callCenter);
+                        },
+                        icon: const SizedBox.shrink(),
                       ),
                     ),
                   ],

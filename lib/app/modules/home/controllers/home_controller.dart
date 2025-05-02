@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hamada/generated/assets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../helpers/enums.dart';
 
@@ -7,7 +9,7 @@ class HomeController extends GetxController {
   final selectedDevice = Rx<Devices?>(null);
   final selectedBrand = Rx<Brands>(Brands.toshiba);
 
-  final List<String> alexandriaAreas = [
+  final alexandriaAreas = <String>[
     'الشاطبي',
     'كامب شيزار',
     'محطة الرمل',
@@ -37,6 +39,19 @@ class HomeController extends GetxController {
     'سان ستيفانو',
     'لوران',
   ];
+  final images = <String>[
+    Asset.images.carousal.slide1,
+    Asset.images.carousal.slide2,
+    Asset.images.carousal.slide3,
+  ];
+
+  Future<void> makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launchUrl(launchUri);
+  }
 
   @override
   void onReady() {

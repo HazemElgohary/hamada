@@ -29,9 +29,10 @@ class _CustomAnimatedListViewState extends State<CustomAnimatedListView> {
   Widget build(BuildContext context) {
     return ListView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsetsDirectional.symmetric(
-        horizontal: 20,
-        vertical: 60,
+      padding: const EdgeInsetsDirectional.only(
+        start: 20,
+        end: 20,
+        bottom: 60,
       ),
       children: widget.children,
     );

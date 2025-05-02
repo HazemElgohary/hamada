@@ -14,34 +14,34 @@ class CallWidget extends StatelessWidget {
         vertical: 40,
       ),
       child: Row(
-        children: [
-          Expanded(
-            child: DefaultButton(
-              color: Colors.red,
-              text: 'اتصل بنا',
-              icon: FaIcon(
-                FontAwesomeIcons.phone,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
+          // children: [
+          //   Expanded(
+          //     child: DefaultButton(
+          //       color: Colors.red,
+          //       text: 'اتصل بنا',
+          //       icon: FaIcon(
+          //         FontAwesomeIcons.phone,
+          //         color: Colors.white,
+          //         size: 20,
+          //       ),
+          //     ),
+          //   ),
+          //   SizedBox(
+          //     width: 10,
+          //   ),
+          //   Expanded(
+          //     child: DefaultButton(
+          //       color: Colors.green,
+          //       text: 'كلمنا واتس',
+          //       icon: FaIcon(
+          //         FontAwesomeIcons.whatsapp,
+          //         color: Colors.white,
+          //         size: 20,
+          //       ),
+          //     ),
+          //   ),
+          // ],
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: DefaultButton(
-              color: Colors.green,
-              text: 'كلمنا واتس',
-              icon: FaIcon(
-                FontAwesomeIcons.whatsapp,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
