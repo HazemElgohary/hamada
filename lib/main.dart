@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'app/config/theme.dart';
 import 'app/inject.dart';
 import 'app/routes/app_pages.dart';
 
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/gestures.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,7 +15,7 @@ Future<void> main() async {
   await inject();
   runApp(
     GetMaterialApp(
-      title: "صيانة",
+      title: "الوطنية للصيانة",
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,

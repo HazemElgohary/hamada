@@ -138,7 +138,7 @@ class HomeView extends GetView<HomeController> {
                         size: 20,
                       ),
                       onTap: () {
-                        controller.makePhoneCall(Constants.callCenterSecond);
+                        controller.makePhoneCall(Constants.callCenter);
                       },
                     ),
                     const SizedBox(
@@ -147,7 +147,7 @@ class HomeView extends GetView<HomeController> {
                     DefaultButton(
                       color: Colors.grey,
                       width: 300,
-                      text: Constants.callCenter,
+                      text: Constants.callCenterSecond,
                       icon: const SizedBox.shrink(),
                       onTap: () {
                         controller.makePhoneCall(Constants.callCenter);
