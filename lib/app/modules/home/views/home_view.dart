@@ -25,7 +25,9 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        backgroundColor: Colors.grey[200],
+        backgroundColor: controller.selectedBrand.value == Brands.zanussi
+            ? controller.selectedBrand.value.getColor()
+            : Colors.grey[200],
         title: Obx(
           () => controller.selectedBrand.value == Brands.zanussi
               ? Image.asset(
@@ -169,13 +171,17 @@ class HomeView extends GetView<HomeController> {
             title: 'صيانة ثلاجة',
             subTitle:
                 'صيانة جميع ثلاجات ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
-            image: Asset.images.devices.friage,
+            image: controller.selectedBrand.value == Brands.zanussi
+                ? Asset.images.zanossi.friageZanussi
+                : Asset.images.devices.friage,
           ),
           DeviceItem(
             title: 'صيانة غسالات',
             subTitle:
                 'صيانة جميع الغسالات ${controller.selectedBrand.value.name.tr} بجميع اشكالها واحجامها',
-            image: Asset.images.devices.drier,
+            image: controller.selectedBrand.value == Brands.zanussi
+                ? Asset.images.zanossi.drierZanussi
+                : Asset.images.devices.drier,
           ),
           DeviceItem(
             title: 'صيانة ديب فريزر',

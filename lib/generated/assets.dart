@@ -34,7 +34,11 @@ String get slide2 => 'assets/images/zanossi/slide2.jpg' ;
 /// * jpg
 String get slide1 => 'assets/images/zanossi/slide1.jpg' ;
 /// * jpg
-String get zanussiBotogas => 'assets/images/zanossi/zanussi_botogas.jpg' ;}class _DevicesInterface{_DevicesInterface();
+String get zanussiBotogas => 'assets/images/zanossi/zanussi_botogas.jpg' ;
+/// * jpg
+String get drierZanussi => 'assets/images/zanossi/drier_zanussi.jpg' ;
+/// * jpg
+String get friageZanussi => 'assets/images/zanossi/friage_zanussi.jpg' ;}class _DevicesInterface{_DevicesInterface();
 /// * png
 String get auto => 'assets/images/devices/auto.png' ;
 /// * jpg

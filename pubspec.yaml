@@ -87,6 +87,8 @@ flutter:
     - assets/images/zanossi/slide2.jpg
     - assets/images/zanossi/slide1.jpg
     - assets/images/zanossi/zanussi_botogas.jpg
+    - assets/images/zanossi/drier_zanussi.jpg
+    - assets/images/zanossi/friage_zanussi.jpg
     - assets/images/devices/auto.png
     - assets/images/devices/tv.jpg
     - assets/images/devices/deep.png
