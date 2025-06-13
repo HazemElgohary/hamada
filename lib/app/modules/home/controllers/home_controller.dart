@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hamada/app/helpers/extentions/string.dart';
 import 'package:hamada/generated/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -57,5 +58,11 @@ class HomeController extends GetxController {
   void onReady() {
     scale.value = 1.0;
     super.onReady();
+  }
+
+  @override
+  void onInit() {
+    selectedBrand.value = Get.routing.current.getBrand();
+    super.onInit();
   }
 }
